@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="sampleApp" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular DataTables Server Side Processing</title>
+
+    <link rel="stylesheet" href="thirdparty/css/bootstrap.min.css">
+    <link rel="stylesheet" href="thirdparty/css/datatables.bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.5.4/css/angular-datatables.min.css">
+
+    <script src="thirdparty/js/jquery.min.js"></script>
+    <script src="//code.angularjs.org/1.5.8/angular.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="thirdparty/js/angular-datatables.bootstrap.js"></script>
+    <script src="thirdparty/js/angular-datatables.min.js"></script>
+
+    <script src="js/app.js"></script>
+</head>
+<body ng-controller="MyController">
+
+    <table datatable=""
+           dt-options="dtOptions"
+           dt-columns="dtColumns"
+           class="table table-bordered table-responsive">
+    </table>
+
+</body>
+</html>
