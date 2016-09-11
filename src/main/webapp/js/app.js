@@ -1,7 +1,10 @@
 var App = angular.module('sampleApp', ['datatables', 'datatables.bootstrap']);
 
-App.controller('MyController', ['$scope', 'DTOptionsBuilder', 'DTColumnBuilder',
-    function ($scope, DTOptionsBuilder, DTColumnBuilder) {
+App.controller('MyController', ['$scope', '$compile', 'DTOptionsBuilder', 'DTColumnBuilder',
+    function ($scope, $compile, DTOptionsBuilder, DTColumnBuilder) {
+
+        $scope.dtInstance = {};
+        $scope.API_URL = 'rest/json/dataPage';
 
         var formatDataBeforeSentToBackend = function (json) {
             var request = {
@@ -23,9 +26,10 @@ App.controller('MyController', ['$scope', 'DTOptionsBuilder', 'DTColumnBuilder',
                     return json.data;
                 },
                 data: function (data) {
+                    console.log("data: "+JSON.stringify(data));
                     return formatDataBeforeSentToBackend(data);
                 },
-                url: 'rest/json/dataPage',
+                url: $scope.API_URL,
                 type: 'POST',
                 contentType: 'application/json'
             })
@@ -37,7 +41,7 @@ App.controller('MyController', ['$scope', 'DTOptionsBuilder', 'DTColumnBuilder',
             .withOption('aaSorting', [0, 'asc']) //set default sorting order
             .withOption('bInfo', false) //remove bottom left information about pages
             .withOption('bLengthChange', false) //remove top left corner drop page size down
-            .withOption('bFilter', false) //remove search box upper right hand side
+            //.withOption('bFilter', false) //remove search box upper right hand side
             .withBootstrap() //use bootstrap features
             .withBootstrapOptions({
                 TableTools: {
@@ -58,12 +62,21 @@ App.controller('MyController', ['$scope', 'DTOptionsBuilder', 'DTColumnBuilder',
                         ul: 'pagination pagination-sm center'
                     }
                 }
+            })
+            .withOption('initComplete', function() {
+                $('.dataTables_filter input').unbind();
+                $('#searchData').on('click', function() {
+                    $scope.dtInstance.DataTable
+                        .column(0).search($('#search-id').val())
+                        .column(1).search($('#search-fname').val())
+                        .column(2).search($('#search-lname').val()).draw();
+                })
             });
 
         $scope.dtColumns = [
-            DTColumnBuilder.newColumn('id').withTitle('User Id'),
-            DTColumnBuilder.newColumn('firstName').withTitle('First Name'),
-            DTColumnBuilder.newColumn('lastName').withTitle('Last Name'),
+            DTColumnBuilder.newColumn('id').withTitle('User Id').withOption('searchable', true),
+            DTColumnBuilder.newColumn('firstName').withTitle('First Name').withOption('searchable', true),
+            DTColumnBuilder.newColumn('lastName').withTitle('Last Name').withOption('searchable', true),
             DTColumnBuilder.newColumn(null).withTitle('Status').notSortable()
                 .renderWith(actionsHtml)
         ];
@@ -77,9 +90,44 @@ App.controller('MyController', ['$scope', 'DTOptionsBuilder', 'DTColumnBuilder',
         }
 
         function createdRow(row, data, dataIndex) {
+            $compile(angular.element(row).contents())($scope);
             console.log('create Row');
             if (data.id % 3 === 1) {
                 $(row).css('background-color', 'yellow');
             }
+        }
+
+        /*$scope.dataSearch = function () {
+         console.log("data search function");
+         var qrystrng = '?';
+         $('#searchForm input').each(function () {
+         qrystrng += $(this).attr('name') + '=' + $(this).val() + '&';
+         });
+         $('#searchForm select').each(function () {
+         qrystrng += $(this).attr('name') + '=' + $(this).val() + '&';
+         });
+         qrystrng = qrystrng.slice(0, -1);
+         var link = $scope.API_URL + 'tags' + qrystrng;
+         /!*$scope.dtInstance.changeData(function (instance) {
+         instance.columns[0].search.value = "Hasith"
+         instance.columns[1].search.value = "wijerathna"
+         return instance;
+         });*!/
+
+         $scope.dtColumns.every(function(i) {
+         console.log("instance: "+i);
+         });
+
+
+         /!*$scope.dtInstance.reloadData(function (reloadData) {
+         console.log("$scope.dtInstance.reloadData")
+         }, false)*!/
+         }*/
+
+        $scope.clearSearch = function () {
+            console.log("data clear function");
+            $('#searchForm input').each(function () {
+                $(this).val('');
+            });
         }
     }]);

@@ -21,6 +21,7 @@ Type on browser localhost:<port> (http://localhost:8080)
 
 
 ###Json Document provided by the DataTable Api and we can get data to process backend.
+https://datatables.net/manual/server-side
 <pre class="javascript" style="font-family:monospace;"><span style="color: #009900;">&#123;</span>
   <span style="color: #3366CC;">&quot;draw&quot;</span><span style="color: #339933;">:</span> <span style="color: #CC0000;">2</span><span style="color: #339933;">,</span>
   <span style="color: #3366CC;">&quot;columns&quot;</span><span style="color: #339933;">:</span> <span style="color: #009900;">&#91;</span>
@@ -193,4 +194,13 @@ use as follows
 <pre class="javascript" style="font-family:monospace;">.<span style="color: #660066;">withOption</span><span
         style="color: #009900;">&#40;</span><span style="color: #3366CC;">'bInfo'</span><span
         style="color: #339933;">,</span> <span style="color: #003366; font-weight: bold;">false</span><span
-        style="color: #009900;">&#41;</span></pre>        
+        style="color: #009900;">&#41;</span></pre>
+                
+                
+http://l-lin.github.io/angular-datatables/#/dataReloadWithAjax
+
+http://stackoverflow.com/questions/34940835/angular-datatable-search-filter-on-search-press
+https://datatables.net/reference/api/column%28%29.search%28%29
+http://plnkr.co/edit/afMNeuUbwolGPffTdson?p=preview
+
+http://l-lin.github.io/angular-datatables/#/dataReloadWithAjax
