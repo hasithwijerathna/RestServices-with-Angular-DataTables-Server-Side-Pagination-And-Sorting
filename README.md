@@ -1,6 +1,6 @@
 # RestServices-with-Angular-DataTables-Server-Side-Pagination-And-Sorting
 
-Angular version version 1.3.1 ( [1.5.8](https://code.angularjs.org/1.5.8/angular.min.js) also working fine)
+Angular version version 1.3.1 ( [1.5.8](https://code.angularjs.org/1.5.8/angular.min.js) also working fine)\n
 JQuery DataTables version 1.10.12
 
 ###Reference 
