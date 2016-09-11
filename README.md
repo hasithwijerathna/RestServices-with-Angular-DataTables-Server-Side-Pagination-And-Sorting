@@ -195,3 +195,10 @@ use as follows
         style="color: #009900;">&#40;</span><span style="color: #3366CC;">'bInfo'</span><span
         style="color: #339933;">,</span> <span style="color: #003366; font-weight: bold;">false</span><span
         style="color: #009900;">&#41;</span></pre>        
+
+
+http://l-lin.github.io/angular-datatables/#/dataReloadWithAjax
+http://stackoverflow.com/questions/34940835/angular-datatable-search-filter-on-search-press
+https://datatables.net/reference/api/column%28%29.search%28%29
+http://plnkr.co/edit/afMNeuUbwolGPffTdson?p=preview
+http://l-lin.github.io/angular-datatables/#/dataReloadWithAjax
