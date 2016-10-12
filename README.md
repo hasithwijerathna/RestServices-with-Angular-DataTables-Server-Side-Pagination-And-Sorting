@@ -209,6 +209,6 @@ when doing client side search we can use below code.
    <span style='color:#308080; '>.</span>withOption<span style='color:#308080; '>(</span><span style='color:#800000; '>'</span><span style='color:#1060b6; '>serverSide</span><span style='color:#800000; '>'</span><span style='color:#308080; '>,</span> <span style='color:#0f4d75; '>false</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
 </pre>
 
-important thin is to remove 
+important thing is to remove 
 <pre style='color:#000020;background:#f6f8ff;'>.newOptions()
 </pre>
