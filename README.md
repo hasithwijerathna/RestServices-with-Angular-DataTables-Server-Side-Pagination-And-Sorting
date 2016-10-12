@@ -202,3 +202,13 @@ http://stackoverflow.com/questions/34940835/angular-datatable-search-filter-on-s
 https://datatables.net/reference/api/column%28%29.search%28%29
 http://plnkr.co/edit/afMNeuUbwolGPffTdson?p=preview
 http://l-lin.github.io/angular-datatables/#/dataReloadWithAjax
+
+when doing client side search we can use below code.
+<pre style='color:#000020;background:#f6f8ff;'>$scope<span style='color:#308080; '>.</span>dtOptions <span style='color:#308080; '>=</span> DTOptionsBuilder
+   <span style='color:#308080; '>.</span>fromSource<span style='color:#308080; '>(</span><span style='color:#800000; '>'</span><span style='color:#1060b6; '>rest/json/dataJson</span><span style='color:#800000; '>'</span><span style='color:#308080; '>)</span>
+   <span style='color:#308080; '>.</span>withOption<span style='color:#308080; '>(</span><span style='color:#800000; '>'</span><span style='color:#1060b6; '>serverSide</span><span style='color:#800000; '>'</span><span style='color:#308080; '>,</span> <span style='color:#0f4d75; '>false</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+</pre>
+
+important thin is to remove 
+<pre style='color:#000020;background:#f6f8ff;'>.newOptions()
+</pre>
