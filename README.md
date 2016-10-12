@@ -212,3 +212,29 @@ when doing client side search we can use below code.
 important thing is to remove 
 <pre style='color:#000020;background:#f6f8ff;'>.newOptions()
 </pre>
+
+and remove and use a GET service from server side as follows
+<pre style='color:#000020;background:#f6f8ff;'>.withOption('ajax', <span style='color:#406080; '>{</span>
+	dataSrc<span style='color:#308080; '>:</span> function <span style='color:#308080; '>(</span>json<span style='color:#308080; '>)</span> <span style='color:#406080; '>{</span>
+		<span style='color:#200080; font-weight:bold; '>return</span> json<span style='color:#308080; '>.</span>data<span style='color:#406080; '>;</span>
+	<span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+	data<span style='color:#308080; '>:</span> function <span style='color:#308080; '>(</span>data<span style='color:#308080; '>)</span> <span style='color:#406080; '>{</span>
+		console<span style='color:#308080; '>.</span>log<span style='color:#308080; '>(</span><span style='color:#1060b6; '>"data: "</span><span style='color:#308080; '>+</span>JSON<span style='color:#308080; '>.</span>stringify<span style='color:#308080; '>(</span>data<span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+		<span style='color:#200080; font-weight:bold; '>return</span> formatDataBeforeSentToBackend<span style='color:#308080; '>(</span>data<span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+	<span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+	url<span style='color:#308080; '>:</span> $scope<span style='color:#308080; '>.</span>API_URL<span style='color:#308080; '>,</span>
+	type<span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'POST'</span><span style='color:#308080; '>,</span>
+	contentType<span style='color:#308080; '>:</span> <span style='color:#ffffff; background:#dd9999; font-weight:bold; font-style:italic; '>'application/json'</span>
+<span style='color:#406080; '>}</span>)
+</pre>
+
+
+Server side GET service
+<pre style='color:#000020;background:#f6f8ff;'>@GET
+@Path("/dataJson")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
+<span style='color:#200080; font-weight:bold; '>public</span> List&lt;User> getPageForDataTable() <span style='color:#406080; '>{</span>
+	<span style='color:#200080; font-weight:bold; '>return</span> controller<span style='color:#308080; '>.</span>getUsers<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+<span style='color:#406080; '>}</span>
+</pre>
