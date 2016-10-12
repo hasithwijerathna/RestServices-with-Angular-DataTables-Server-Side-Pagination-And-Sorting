@@ -203,17 +203,19 @@ https://datatables.net/reference/api/column%28%29.search%28%29
 http://plnkr.co/edit/afMNeuUbwolGPffTdson?p=preview
 http://l-lin.github.io/angular-datatables/#/dataReloadWithAjax
 
-when doing client side search we can use below code.
+
+#Modify to do client side search. 
+####when doing client side search we can use below code.
 <pre style='color:#000020;background:#f6f8ff;'>$scope<span style='color:#308080; '>.</span>dtOptions <span style='color:#308080; '>=</span> DTOptionsBuilder
    <span style='color:#308080; '>.</span>fromSource<span style='color:#308080; '>(</span><span style='color:#800000; '>'</span><span style='color:#1060b6; '>rest/json/dataJson</span><span style='color:#800000; '>'</span><span style='color:#308080; '>)</span>
    <span style='color:#308080; '>.</span>withOption<span style='color:#308080; '>(</span><span style='color:#800000; '>'</span><span style='color:#1060b6; '>serverSide</span><span style='color:#800000; '>'</span><span style='color:#308080; '>,</span> <span style='color:#0f4d75; '>false</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
 </pre>
 
-important thing is to remove 
+####important thing is to remove 
 <pre style='color:#000020;background:#f6f8ff;'>.newOptions()
 </pre>
 
-and remove and use a GET service from server side as follows
+####and remove bellow POST ajax call and use a GET service from server side as follows
 <pre style='color:#000020;background:#f6f8ff;'>.withOption('ajax', <span style='color:#406080; '>{</span>
 	dataSrc<span style='color:#308080; '>:</span> function <span style='color:#308080; '>(</span>json<span style='color:#308080; '>)</span> <span style='color:#406080; '>{</span>
 		<span style='color:#200080; font-weight:bold; '>return</span> json<span style='color:#308080; '>.</span>data<span style='color:#406080; '>;</span>
@@ -229,7 +231,7 @@ and remove and use a GET service from server side as follows
 </pre>
 
 
-Server side GET service
+####Server side GET service
 <pre style='color:#000020;background:#f6f8ff;'>@GET
 @Path("/dataJson")
 @Consumes(MediaType.APPLICATION_JSON)
